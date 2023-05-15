@@ -1,28 +1,43 @@
 package main
 
+import "fmt"
+
+type ContactInfo struct {
+	email string
+	zip   int
+}
+type person struct {
+	firstName string
+	lastName  string
+	contact   ContactInfo
+}
+
+func (p person) data() {
+	fmt.Println("result is ", p.firstName)
+
+}
+func (p *person) updateName(newFirstName string) {
+	(*p).firstName = newFirstName
+}
+
 func main() {
-	//var number = mobile{}
-	//fmt.Println(number.mobileNumber("+91"))
+	//name := person{firstName: "Mukul", lastName: "Mantosh"}
+	//fmt.Println(name)
+	var name person
+	name.firstName = "Mukul"
+	name.lastName = "Mantosh"
+	name.contact.email = "mukul@gmail.com"
+	name.contact.zip = 123
+	fmt.Println(name)
+	fmt.Printf("%+v", name)
+	name.data()
 
-	cards := newDeck()
-	cards.shuffle()
-	cards.print()
-	//err := cards.saveToFile("my_cards.txt")
-	//if err != nil {
-	//	return
-	//}
+	// Updating using Pointer
+	//dataPointer := &name
+	//dataPointer.updateName("MM")
 
-	//readFile := cards.newDeckFromFile("my_cards.txt")
-	//fmt.Println(readFile)
+	// Pointer Shortcut
+	name.updateName("MM")
 
-	//cards.print()
-	//hand, remainingCards := deal(cards, 5)
-	//hand.print()
-	//fmt.Println("    ")
-	//remainingCards.print()
-	//fmt.Println(cards.toString())
-
-	//greeting := "Hi there"
-	//fmt.Println([]byte(greeting))
-
+	fmt.Println(name)
 }
